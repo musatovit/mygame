@@ -1,10 +1,26 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import * as api from "../../App/api";
 
 export function Registration(): JSX.Element {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const dispatch = useDispatch();
+
+  const { user, message } = useSelector((store: RootState) => store.userState);
+
+  const registration = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    api.registration({ name, password, email, password2 }).then((data) =>
+      dispatch({
+        type: "REG_USER",
+        payload: data,
+      })
+    );
+  };
 
   return (
     <div>
