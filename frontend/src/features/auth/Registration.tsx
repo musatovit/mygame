@@ -24,7 +24,7 @@ export function Registration(): JSX.Element {
 
   return (
     <div>
-      <form>
+      <form onSubmit={registration}>
         <input
           id="name"
           name="name"
