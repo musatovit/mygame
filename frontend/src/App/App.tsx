@@ -1,6 +1,12 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, {useEffect} from "react";
 import "./App.css";
+import * as api from './api';
+
+
+// useEffect(() => {
+//     console.log('qqq')
+//     //api.loadCards().then((data: any) => console.log(data))
+// }, [])
 
 function App() {
   return (
