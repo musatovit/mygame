@@ -9,11 +9,9 @@ import * as api from './api';
 
 
 
-
 function App(): JSX.Element {
 
     useEffect(() => {
-        console.log('qqq')
         api.loadCards().then((data) => console.log(data))
     }, [])
 
