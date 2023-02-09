@@ -25,8 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsOptions));
 
 const apiAuthRoute = require('./routes/auth.routes');
+const cardsRoute = require('./routes/cards.routes');
 
 app.use('/api/auth', apiAuthRoute);
+app.use('/api/card', cardsRoute);
 
 app.listen(PORT, () => {
   console.log(`Сервер запущу на ${PORT}щу`);

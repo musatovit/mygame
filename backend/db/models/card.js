@@ -1,9 +1,9 @@
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Card extends Model {
     static associate({ Theme }) {
       this.belongsTo(Theme, {
-        foreignKey: "themeId",
+        foreignKey: 'themeId',
       });
     }
   }
@@ -14,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       themeId: {
         type: DataTypes.INTEGER,
         references: {
-          model: "Themes",
-          key: "id",
+          model: 'Themes',
+          key: 'id',
         },
-        score: { type: DataTypes.INTEGER, allowNull: false },
       },
+      score: { type: DataTypes.INTEGER, allowNull: false },
     },
     {
       sequelize,
-      modelName: "Card",
+      modelName: 'Card',
     }
   );
   return Card;
