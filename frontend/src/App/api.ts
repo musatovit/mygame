@@ -1,10 +1,8 @@
 import { User } from "../features/auth/Types/type";
 
-export const loadCards = async (): Promise<any> => {
-  console.log("qqqq");
-  const res = await fetch("http://localhost:4000/api/card");
-  console.log("qqq");
-  return res.json();
+export const loadCards = async (): Promise<any>  => {
+    const res = await fetch('http://localhost:4000/api/card')
+    return res.json()
 };
 
 export const registration = async (newUser: User): Promise<User> => {
@@ -22,4 +20,3 @@ export const registration = async (newUser: User): Promise<User> => {
   });
   return res.json();
 };
-//Promise<Cards[]>

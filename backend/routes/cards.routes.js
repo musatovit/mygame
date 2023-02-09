@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
       question: el.question,
       answer: el.answer,
       score: el.score,
-      Theme: el.Theme.title,
+      theme: el.Theme.title,
     }));
     res.json(newCards);
   } catch ({ message }) {
