@@ -1,18 +1,23 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Registration } from "../features/auth/Registration";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Authorization } from "../features/auth/Authorization";
 import { Header } from "../features/Header/Header";
+import Board from "../features/Board/Board"
 import * as api from './api';
 
 
-// useEffect(() => {
-//     console.log('qqq')
-//     //api.loadCards().then((data: any) => console.log(data))
-// }, [])
+
 
 function App(): JSX.Element {
+
+    useEffect(() => {
+        console.log('qqq')
+        api.loadCards().then((data) => console.log(data))
+    }, [])
+
+
   return (
     <div className="App">
       <Routes>
@@ -21,6 +26,7 @@ function App(): JSX.Element {
           <Route path="/authorization" element={<Authorization />} />
         </Route>
       </Routes>
+        <Board />
     </div>
   );
 }
