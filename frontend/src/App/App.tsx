@@ -4,6 +4,13 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Authorization } from "../features/auth/Authorization";
 import { Header } from "../features/Header/Header";
+import * as api from './api';
+
+
+// useEffect(() => {
+//     console.log('qqq')
+//     //api.loadCards().then((data: any) => console.log(data))
+// }, [])
 
 function App(): JSX.Element {
   return (
