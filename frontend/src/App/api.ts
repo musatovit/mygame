@@ -1,8 +1,7 @@
-// export const loadCards = async (): Promise<any>  => {  //Promise<Cards[]>
-//     const res = await fetch('http://localhost:4000/api/cards')
-//     return [{}]
-// }
-
-export const registr = () => {
-    console.log('qqqqqq')
+export const loadCards = async (): Promise<any>  => {
+    console.log('qqqq')
+    const res = await fetch('http://localhost:4000/api/card')
+    console.log('qqq')
+    return res.json()
 }
+//Promise<Cards[]>
