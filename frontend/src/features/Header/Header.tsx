@@ -1,7 +1,17 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as api from "../../App/api";
 
 export function Header(): JSX.Element {
+  // const dispatch = useDispatch();
+  // const logout = () => {
+  //   api.logout().then((data) =>
+  //     dispatch({
+  //       type: "REG_USER",
+  //       payload: { user: {}, message: "" },
+  //     })
+  //   );
   return (
     <>
       <div>
@@ -12,7 +22,9 @@ export function Header(): JSX.Element {
         <div>
           <NavLink to="/authorization">Авторизация</NavLink>
         </div>
-        <div>Выйти</div>
+        <NavLink onClick={api.logout} to="/">
+          Выйти
+        </NavLink>
       </div>
       <Outlet />
     </>

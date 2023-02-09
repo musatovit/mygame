@@ -9,3 +9,7 @@ export type State = {
   user: {} | User;
   message: "" | string;
 };
+export type AuthUser = {
+  email: string;
+  password: string;
+};

@@ -1,17 +1,18 @@
-import { User } from '../features/auth/Types/type';
-import { Card } from '../features/Board/Types/types';
+import { User, AuthUser } from "../features/auth/Types/type";
+import { Card } from "../features/Board/Types/types";
 
 export const loadCards = async (): Promise<Card[]> => {
-    const res = await fetch('http://localhost:4000/api/card');
-    return res.json();
+  const res = await fetch("http://localhost:4000/api/card");
+  return res.json();
 };
 
 export const registration = async (newUser: User): Promise<User> => {
-  const res = await fetch('http://localhost:4000/api/auth/sign-up', {
-    method: 'POST',
+  const res = await fetch("http://localhost:4000/api/auth/sign-up", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify({
       name: newUser.name,
       email: newUser.email,
@@ -19,5 +20,27 @@ export const registration = async (newUser: User): Promise<User> => {
       password2: newUser.password,
     }),
   });
+  return res.json();
+};
+
+export const auth = async (user: AuthUser): Promise<AuthUser> => {
+  const res = await fetch("http://localhost:4000/api/auth/sign-in", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({
+      email: user.email,
+      password: user.password,
+    }),
+  });
+  return res.json();
+};
+
+export const logout = async () => {
+  const res = await fetch("http://localhost:4000/api/auth/logout", {});
+  console.log(res.json());
+
   return res.json();
 };
