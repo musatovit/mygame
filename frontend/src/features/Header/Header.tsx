@@ -14,9 +14,10 @@ export default function Header(): JSX.Element {
           <div>
             <NavLink to="/registration">Регистрация</NavLink>
           </div>
-          <div>
-            <NavLink to="/authorization">Авторизация</NavLink>
-          </div>
+
+          {/* <div>
+            <NavLink to="/">Авторизация</NavLink>
+          </div> */}
         </div>
       ) : (
         <div className="flex space-x-4 text-3xl place-content-center mt-3">
