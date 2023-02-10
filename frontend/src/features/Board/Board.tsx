@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
+// @ts-ignore
 import { Card } from './Types/type';
 import { CardAnswer } from './Card';
 

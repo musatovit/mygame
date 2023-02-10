@@ -6,5 +6,8 @@ type Action = {
 } | {
     type: 'CHANGE_ACTIVE';
     payload: CardId
+} | {
+    type: 'CHANGE_UNACTIVE';
+    payload: CardId
 };
 export default Action;
