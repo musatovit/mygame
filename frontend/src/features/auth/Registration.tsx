@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { RootState } from "../../store";
-import * as api from "../../App/api";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { RootState } from '../../store';
+import * as api from '../../App/api';
 
 export function Registration(): JSX.Element {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { user, message } = useSelector((store: RootState) => store.userState);
@@ -18,17 +18,18 @@ export function Registration(): JSX.Element {
       .registration({ name, password, email, password2 })
       .then((data) =>
         dispatch({
-          type: "REG_USER",
+          type: 'REG_USER',
           payload: data,
         })
       )
-      .then(() => nav("/"));
+      .then(() => nav('/'));
   };
 
   return (
-    <div>
-      <form onSubmit={registration}>
+    <div className="place-content-center items-center flex flex-auto">
+      <form className="flex flex-col w-72 h-56 border-blue-500 space-y-3 items-center place-content-center" onSubmit={registration}>
         <input
+          className="mt-5"
           id="name"
           name="name"
           type="text"
@@ -60,7 +61,7 @@ export function Registration(): JSX.Element {
           onChange={(e) => setPassword2(e.target.value)}
           placeholder="password2"
         />
-        <button type="submit">Зарегистрироваться</button>
+        <button className="mt-5 bg-blue-700 w-48" type="submit">Зарегистрироваться</button>
       </form>
     </div>
   );

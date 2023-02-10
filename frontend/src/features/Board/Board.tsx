@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 // @ts-ignore
@@ -38,7 +38,7 @@ function Board(): JSX.Element {
     // @ts-ignore
     // @ts-ignore
     return (
-<div className="mt-20">
+<div className="mt-32">
     {newCards.map((card) => (
         <>
             {/* eslint-disable-next-line react/no-array-index-key */}
