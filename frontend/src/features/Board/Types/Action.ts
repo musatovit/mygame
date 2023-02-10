@@ -9,5 +9,8 @@ type Action = {
 } | {
     type: 'CHANGE_UNACTIVE';
     payload: CardId
+} | {
+    type: 'CLICKED';
+    payload: CardId
 };
 export default Action;

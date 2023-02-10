@@ -26,17 +26,18 @@ function Board(): JSX.Element {
     const newCards = theme.map((th, index) => ({
         id: index + 1000,
         theme: th,
-        cards: cards.filter((card) => card.theme === th)
+        cards: cards.filter((card: { theme: any; }) => card.theme === th)
     }));
 
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     const clickCard = (clickCard: Card): void => {
-        dispatch({
+        if (!clickCard.clicked) {
+dispatch({
             type: 'CHANGE_ACTIVE',
             payload: clickCard.id
         });
+}
     };
-
-    console.log(newCards);
 
     // @ts-ignore
     return (
@@ -50,10 +51,10 @@ function Board(): JSX.Element {
         <>
             {/* eslint-disable-next-line react/no-array-index-key */}
         <div className="flex space-x-4 text-2xl place-content-center mt-1 mr-1" key={card.id}>
-           <div className="box-content h-16 w-48 p-4 border-4 text-center "><p className="pt-4"> {card.theme}</p></div>
+           <div className="box-content h-16 w-48 p-4 border-4 text-center "><p className="pt-4 text-yellow-200 font-weight: 900"> {card.theme}</p></div>
             {card.cards.map((el) => (
                 <>
-                <div className="box-content h-16 w-16 p-4 border-4 text-center" onClick={() => clickCard(el)} key={el.id}><p className="pt-4">{el.score}</p></div>
+                <div className="box-content h-16 w-16 p-4 border-4 text-center" onClick={() => clickCard(el)} key={el.id}><p className={el.clicked ? 'pt-4 text-red-600 ' : 'pt-4 text-yellow-200 '}>{el.score}</p></div>
                     {el.active && <CardAnswer key={el.id} value={el} />}
                 </>
             ))}

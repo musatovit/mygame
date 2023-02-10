@@ -11,7 +11,8 @@ export const cardsReducer = (state: State = init, action: Action): State => {
                 ...state,
                 cards: action.payload.map((card) => ({
                     ...card,
-                    active: false
+                    active: false,
+                    clicked: false
                 }))
             };
         case 'CHANGE_ACTIVE':
@@ -23,6 +24,11 @@ export const cardsReducer = (state: State = init, action: Action): State => {
             return {
                 ...state,
                 cards: state.cards.map((el) => el.id !== action.payload ? { ...el } : { ...el, active: false })
+            };
+        case 'CLICKED':
+            return {
+                ...state,
+                cards: state.cards.map((el) => el.id !== action.payload ? { ...el } : { ...el, clicked: true })
             };
         default:
             return state;
