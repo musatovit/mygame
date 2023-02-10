@@ -24,12 +24,16 @@ export function CardAnswer({ value }): JSX.Element {
       type: 'CHANGE_UNACTIVE',
       payload: value.id
     });
+    dispatch({
+      type: 'CLICKED',
+      payload: value.id
+    });
   };
 
   return (
       <>
         { /** Just added */}
-        <div className="fixed top-48 right-0 left-0 z-20 flex justify-center">
+        <div className="fixed top-56 right-0 left-0 z-20 flex justify-center">
           <div className="mx-4 my-4 bg-white">
             <div className="flex justify-end">
               <button
