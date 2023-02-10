@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { NavLink, Outlet } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import * as api from "../../App/api";
-import { RootState } from "../../store";
-
+import { NavLink, Outlet } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import * as api from '../../App/api';
+import { RootState } from '../../store';
 
 export function Header(): JSX.Element {
   const { user, message } = useSelector((store: RootState) => store.userState);
@@ -22,7 +21,7 @@ export function Header(): JSX.Element {
   return (
     <>
       {page === false && (
-        <div>
+        <div className="flex space-x-4 text-3xl place-content-center mt-3">
           <div>Игра</div>
           <div>
             <NavLink to="/registration">Регистрация</NavLink>
