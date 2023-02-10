@@ -2,6 +2,7 @@ export type User = {
   id?: number;
   name: string;
   email: string;
+  userScore?: number;
   password?: string;
   password2?: string;
 };

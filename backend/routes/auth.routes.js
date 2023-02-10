@@ -12,6 +12,7 @@ router.post("/sign-in", async (req, res) => {
           id: user.id,
           name: user.name,
           email: user.email,
+          userScore: user.userScore,
         };
         req.session.userid = user.id;
         res.status(201).json({ message: "", user });
@@ -45,6 +46,7 @@ router.post("/sign-up", async (req, res) => {
           id: newUser.id,
           name: newUser.name,
           email: newUser.email,
+          userScore: newUser.userScore,
         };
         req.session.userid = user.id;
         res.status(201).json({ message: "", user });
@@ -79,6 +81,7 @@ router.get("/session", async (req, res) => {
         id: actualUser.id,
         name: actualUser.name,
         email: actualUser.email,
+        userScore: actualUser.userScore,
       };
       res.status(201).json({ message: "ok", user });
       return;
