@@ -1,3 +1,6 @@
+import exp from 'constants';
+import { Card } from '../../Board/Types/type';
+
 export type User = {
   id?: number;
   name: string;
@@ -14,3 +17,5 @@ export type AuthUser = {
   email: string;
   password: string;
 };
+
+export type UserScore = User['userScore'];

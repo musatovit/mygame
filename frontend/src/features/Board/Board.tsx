@@ -8,7 +8,10 @@ import { CardAnswer } from './Card';
 function Board(): JSX.Element {
     const dispatch = useDispatch();
     const { cards } = useSelector((store:RootState) => store.cardState);
+    const { user } = useSelector((store:RootState) => store.userState);
+    console.log(user);
 
+    // @ts-ignore
     // console.log(cards);
     // eslint-disable-next-line array-callback-return
     const theme = cards.reduce((acc, card) => {
@@ -34,11 +37,15 @@ function Board(): JSX.Element {
     };
 
     console.log(newCards);
-    // @ts-ignore
-    // @ts-ignore
+
     // @ts-ignore
     return (
 <div className="mt-32">
+    <div className="flex place-content-center space-x-4">
+        <h1 className="text-2xl text-blue-700">{user.name}:{}</h1>
+        {' '}
+        <h1 className="text-2xl text-blue-700"> {user.userScore}</h1>
+    </div>
     {newCards.map((card) => (
         <>
             {/* eslint-disable-next-line react/no-array-index-key */}

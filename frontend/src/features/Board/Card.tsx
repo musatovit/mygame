@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { UserScore } from '../auth/Types/type';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,react/prop-types
 // @ts-ignore
@@ -13,6 +14,8 @@ export function CardAnswer({ value }): JSX.Element {
   const handleClick = () => {
     if (answer.toLowerCase() === value.answer.toLowerCase()) {
       setIsTrue('1');
+      // eslint-disable-next-line react/prop-types
+      dispatch({ type: 'PLUS_SCORE', payload: value.score });
     } else setIsTrue('0');
   };
 
