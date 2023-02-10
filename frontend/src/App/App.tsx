@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Registration } from "../features/auth/Registration";
 import "./App.css";
 import { Authorization } from "../features/auth/Authorization";
 import { Header } from "../features/Header/Header";
 import Board from "../features/Board/Board";
 import * as api from "./api";
+import { RootState } from "../store";
 
 function App(): JSX.Element {
   const dispatch = useDispatch();

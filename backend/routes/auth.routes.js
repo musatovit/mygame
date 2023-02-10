@@ -14,7 +14,7 @@ router.post("/sign-in", async (req, res) => {
           email: user.email,
         };
         req.session.userid = user.id;
-        res.status(201).json(user);
+        res.status(201).json({ message: "", user });
       } else {
         res.status(403).json({ message: "Неверный email или пароль" });
       }
