@@ -1,6 +1,7 @@
 import { User, AuthUser } from "../features/auth/Types/type";
 import { Card } from "../features/Board/Types/types";
 
+
 export const loadCards = async (): Promise<Card[]> => {
   const res = await fetch("http://localhost:4000/api/card");
   return res.json();

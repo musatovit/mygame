@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-export function Card(): JSX.Element {
-  const [answer, setAnswer] = useState("");
+// eslint-disable-next-line @typescript-eslint/no-unused-vars,react/prop-types
+// @ts-ignore
+// eslint-disable-next-line react/prop-types
+export function CardAnswer({ value }): JSX.Element {
+  const [answer, setAnswer] = useState('');
   return (
     <div>
       <form>
+        {value.question}
         <div>Вопрос</div>
         <div>
           <input

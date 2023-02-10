@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as api from "../../App/api";
 
+
 export function Header(): JSX.Element {
   // const dispatch = useDispatch();
   // const logout = () => {
@@ -14,7 +15,7 @@ export function Header(): JSX.Element {
   //   );
   return (
     <>
-      <div>
+      <div className="flex space-x-4 text-3xl place-content-center mt-3">
         <div>Игра</div>
         <div>
           <NavLink to="/registration">Регистрация</NavLink>
