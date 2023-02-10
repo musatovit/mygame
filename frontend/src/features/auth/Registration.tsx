@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { RootState } from "../../store";
 import * as api from "../../App/api";
-import { useNavigate } from "react-router";
 
 export function Registration(): JSX.Element {
   const [name, setName] = useState("");
@@ -14,12 +14,15 @@ export function Registration(): JSX.Element {
   const { user, message } = useSelector((store: RootState) => store.userState);
   const registration = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    api.registration({ name, password, email, password2 }).then((data) =>
-      dispatch({
-        type: "REG_USER",
-        payload: data,
-      })
-    );
+    api
+      .registration({ name, password, email, password2 })
+      .then((data) =>
+        dispatch({
+          type: "REG_USER",
+          payload: data,
+        })
+      )
+      .then(() => nav("/"));
   };
 
   return (
@@ -31,6 +34,7 @@ export function Registration(): JSX.Element {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="name"
         />
         <input
           id="email"
@@ -38,6 +42,7 @@ export function Registration(): JSX.Element {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="email"
         />
         <input
           id="password"
@@ -45,6 +50,7 @@ export function Registration(): JSX.Element {
           type="text"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="password"
         />
         <input
           id="password2"
@@ -52,6 +58,7 @@ export function Registration(): JSX.Element {
           type="text"
           value={password2}
           onChange={(e) => setPassword2(e.target.value)}
+          placeholder="password2"
         />
         <button type="submit">Зарегистрироваться</button>
       </form>

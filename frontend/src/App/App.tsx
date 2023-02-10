@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Registration } from "../features/auth/Registration";
 import "./App.css";
 import { Authorization } from "../features/auth/Authorization";
-import { Header } from "../features/Header/Header";
+import Header from "../features/Header/Header";
 import Board from "../features/Board/Board";
 import * as api from "./api";
 import { RootState } from "../store";
@@ -15,6 +15,12 @@ function App(): JSX.Element {
     api
       .loadCards()
       .then((data) => dispatch({ type: "INIT_CARDS", payload: data }));
+  }, []);
+
+  useEffect(() => {
+    api
+      .checkUser()
+      .then((data) => dispatch({ type: "CHECK_USER", payload: data }));
   }, []);
 
   return (

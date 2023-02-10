@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from "redux";
 
 import { cardsReducer } from "./features/Board/cardsReducer";
-import { userReducer } from "./features/auth/userReducer";
+import userReducer from "./features/auth/userReducer";
 
 const store = createStore(
   combineReducers({ cardState: cardsReducer, userState: userReducer })
