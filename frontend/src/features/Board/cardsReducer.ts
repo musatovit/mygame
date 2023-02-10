@@ -1,5 +1,5 @@
 import Action from './Types/Action';
-import { State } from './Types/types';
+import { State } from './Types/type';
 
 export const init = { cards: [] };
 
@@ -13,6 +13,11 @@ export const cardsReducer = (state: State = init, action: Action): State => {
                     ...card,
                     active: false
                 }))
+            };
+        case 'CHANGE_ACTIVE':
+            return {
+                ...state,
+                cards: state.cards.map((el) => el.id !== action.payload ? { ...el } : { ...el, active: true })
             };
         default:
             return state;

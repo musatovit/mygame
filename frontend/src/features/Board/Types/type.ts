@@ -10,3 +10,5 @@ export type Card = {
 export type State = {
     cards: Card[];
 };
+
+export type CardId = Card['id'];
