@@ -22,17 +22,31 @@ function App(): JSX.Element {
       .checkUser()
       .then((data) => dispatch({ type: "CHECK_USER", payload: data }));
   }, []);
-
+  const { user, message } = useSelector((store: RootState) => store.userState);
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Header />}>
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/authorization" element={<Authorization />} />
-        </Route>
-      </Routes>
-      <Board />
-    </div>
+    <>
+      {!("name" in user) ? (
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Header />}>
+              <Route path="/registration" element={<Registration />} />
+              <Route path="/" element={<Authorization />} />
+            </Route>
+          </Routes>
+          {/* <Authorization /> */}
+        </div>
+      ) : (
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Header />}>
+              <Route path="/registration" element={<Registration />} />
+              {/* <Route path="/" element={<Authorization />} /> */}
+            </Route>
+          </Routes>
+          <Board />
+        </div>
+      )}
+    </>
   );
 }
 
