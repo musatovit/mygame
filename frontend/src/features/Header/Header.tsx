@@ -1,32 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { NavLink, Outlet } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as api from "../../App/api";
+import { RootState } from "../../store";
 
 
 export function Header(): JSX.Element {
+  const { user, message } = useSelector((store: RootState) => store.userState);
+  // console.log(user, message, "____________________________");
+  const [page, usePage] = useState(false);
   // const dispatch = useDispatch();
+  // const datat = { user: {}, message: "" };
   // const logout = () => {
   //   api.logout().then((data) =>
   //     dispatch({
-  //       type: "REG_USER",
-  //       payload: { user: {}, message: "" },
+  //       type: "LOGOUT_USER",
+  //       payload: datat,
   //     })
   //   );
   return (
     <>
-      <div className="flex space-x-4 text-3xl place-content-center mt-3">
-        <div>Игра</div>
+      {page === false && (
         <div>
-          <NavLink to="/registration">Регистрация</NavLink>
+          <div>Игра</div>
+          <div>
+            <NavLink to="/registration">Регистрация</NavLink>
+          </div>
+          <div>
+            <NavLink to="/authorization">Авторизация</NavLink>
+          </div>
+          <div onClick={api.logout}>
+            <a href="/">Выйти</a>
+          </div>
         </div>
+      )}
+      {page === true && (
         <div>
-          <NavLink to="/authorization">Авторизация</NavLink>
+          <div>Игра</div>
+          <div onClick={api.logout}>
+            <a href="/">Выйти</a>
+          </div>
         </div>
-        <NavLink onClick={api.logout} to="/">
-          Выйти
-        </NavLink>
-      </div>
+      )}
       <Outlet />
     </>
   );

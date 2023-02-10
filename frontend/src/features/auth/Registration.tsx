@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import * as api from "../../App/api";
+import { useNavigate } from "react-router";
 
 export function Registration(): JSX.Element {
   const [name, setName] = useState("");
@@ -9,9 +10,8 @@ export function Registration(): JSX.Element {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const dispatch = useDispatch();
-
+  const nav = useNavigate();
   const { user, message } = useSelector((store: RootState) => store.userState);
-
   const registration = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     api.registration({ name, password, email, password2 }).then((data) =>

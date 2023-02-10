@@ -36,12 +36,12 @@ export const auth = async (user: AuthUser): Promise<AuthUser> => {
       password: user.password,
     }),
   });
-  return res.json();
+ return res.json();
 };
 
 export const logout = async () => {
-  const res = await fetch("http://localhost:4000/api/auth/logout", {});
-  console.log(res.json());
-
+  const res = await fetch("http://localhost:4000/api/auth/logout", {
+    credentials: "include",
+  });
   return res.json();
 };
