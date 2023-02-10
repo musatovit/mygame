@@ -6,6 +6,7 @@ type Action =
       payload: State;
     }
   | { type: "AUTH_USER"; payload: State }
-  | { type: "LOGOUT_USER"; payload: State };
+  | { type: "LOGOUT_USER"; payload: State }
+  | { type: "CHECK_USER"; payload: State };
 
 export default Action;

@@ -1,6 +1,5 @@
 import { User, AuthUser } from "../features/auth/Types/type";
-import { Card } from "../features/Board/Types/types";
-
+import { Card } from "../features/Board/Types/type";
 
 export const loadCards = async (): Promise<Card[]> => {
   const res = await fetch("http://localhost:4000/api/card");
@@ -36,7 +35,7 @@ export const auth = async (user: AuthUser): Promise<AuthUser> => {
       password: user.password,
     }),
   });
- return res.json();
+  return res.json();
 };
 
 export const logout = async () => {
@@ -44,4 +43,14 @@ export const logout = async () => {
     credentials: "include",
   });
   return res.json();
+};
+
+export const checkUser = async () => {
+  const res = await fetch("http://localhost:4000/api/auth/session", {
+    credentials: "include",
+  });
+  const data = await res.json();
+  console.log(data);
+
+  return data;
 };

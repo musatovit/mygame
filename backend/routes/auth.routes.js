@@ -61,13 +61,33 @@ router.post("/sign-up", async (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
-  req.session.destroy((error) => {
+router.get("/logout", async (req, res) => {
+  await req.session.destroy((error) => {
     if (error) {
       return res.status(500).json({ message: "Ошибка при удалении сессии" });
     }
     res.clearCookie("user_sid");
   });
+});
+router.get("/session", async (req, res) => {
+  try {
+    if (req.session.userid) {
+      const actualUser = await User.findOne({
+        where: { id: req.session.userid },
+      });
+      const user = {
+        id: actualUser.id,
+        name: actualUser.name,
+        email: actualUser.email,
+      };
+      res.status(201).json({ message: "ok", user });
+      return;
+    }
+    res.clearCookie("user_sid");
+    res.json({ message: "error", user: {} });
+  } catch ({ message }) {
+    res.json({ message, user: {} });
+  }
 });
 
 module.exports = router;

@@ -1,10 +1,11 @@
 import Action from "./Types/Action";
 import { State } from "./Types/type";
-const init = {
+
+const init: State = {
   user: {},
   message: "",
 };
-export const userReducer = (state: State = init, action: Action): State => {
+const userReducer = (state: State = init, action: Action): State => {
   switch (action.type) {
     case "REG_USER":
       return {
@@ -24,7 +25,14 @@ export const userReducer = (state: State = init, action: Action): State => {
         user: action.payload.user,
         message: action.payload.message,
       };
+    case "CHECK_USER":
+      return {
+        ...state,
+        user: action.payload.user,
+        message: action.payload.message,
+      };
     default:
       return state;
   }
 };
+export default userReducer;
