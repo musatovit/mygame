@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const bcrypt = require('bcrypt');
-const { User } = require('../db/models');
+const router = require("express").Router();
+const bcrypt = require("bcrypt");
+const { User } = require("../db/models");
 
-router.post('/sign-in', async (req, res) => {
+router.post("/sign-in", async (req, res) => {
   try {
     const { email, password } = req.body;
     if (email && password) {
@@ -16,23 +16,21 @@ router.post('/sign-in', async (req, res) => {
         req.session.userid = user.id;
         res.status(201).json(user);
       } else {
-        res.status(403).json({ message: 'Неверный email или пароль' });
+        res.status(403).json({ message: "Неверный email или пароль" });
       }
     } else {
-      res.status(403).json({ message: 'Заполните все поля' });
+      res.status(403).json({ message: "Заполните все поля" });
     }
   } catch ({ message }) {
     res.status(500).json(message);
   }
 });
 
-router.post('/sign-up', async (req, res) => {
+router.post("/sign-up", async (req, res) => {
   try {
-    const {
-      email, name, password, password2,
-    } = req.body;
+    const { email, name, password, password2 } = req.body;
     if (password !== password2) {
-      return res.json({ message: 'Пароли не совпадают', user: {} });
+      return res.json({ message: "Пароли не совпадают", user: {} });
     }
     if (email && name && password && password2) {
       let user = await User.findOne({ where: { email } });
@@ -49,16 +47,27 @@ router.post('/sign-up', async (req, res) => {
           email: newUser.email,
         };
         req.session.userid = user.id;
-        res.status(201).json({ message: '', user });
+        res.status(201).json({ message: "", user });
       } else {
-        res.status(403).json({ message: 'Такой email уже существует', user: {} });
+        res
+          .status(403)
+          .json({ message: "Такой email уже существует", user: {} });
       }
     } else {
-      res.status(403).json({ message: 'Заполните все поля', user: {} });
+      res.status(403).json({ message: "Заполните все поля", user: {} });
     }
   } catch ({ message }) {
     res.json(message);
   }
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy((error) => {
+    if (error) {
+      return res.status(500).json({ message: "Ошибка при удалении сессии" });
+    }
+    res.clearCookie("user_sid");
+  });
 });
 
 module.exports = router;

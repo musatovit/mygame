@@ -12,6 +12,12 @@ export const userReducer = (state: State = init, action: Action): State => {
         user: action.payload.user,
         message: action.payload.message,
       };
+    case "AUTH_USER":
+      return {
+        ...state,
+        user: action.payload.user,
+        message: action.payload.message,
+      };
     default:
       return state;
   }
